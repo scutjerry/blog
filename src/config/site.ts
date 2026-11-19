@@ -1,8 +1,11 @@
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const siteConfig = {
   name: "留白之间",
   shortName: "留白",
   description: "记录技术实践、设计思考与持续生长的个人笔记。",
-  url: process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000",
+  url: siteUrl,
   author: "JERRY",
   github: "https://github.com/scutjerry",
   nav: [
