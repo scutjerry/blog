@@ -5,6 +5,7 @@ import path from "node:path";
 import matter from "gray-matter";
 import readingTime from "reading-time";
 import { z } from "zod";
+import { toTagSlug } from "@/lib/tag-slug";
 import type { Post, PostSummary, TaxonomyItem } from "@/types/post";
 
 const POSTS_DIRECTORY = path.join(process.cwd(), "content", "posts");
@@ -82,6 +83,10 @@ export function getCategories(): TaxonomyItem[] {
 
 export function getTags(): TaxonomyItem[] {
   return countTaxonomy(getPublishedPosts().flatMap((post) => post.tags));
+}
+
+export function getTagBySlug(slug: string): TaxonomyItem | undefined {
+  return getTags().find((tag) => toTagSlug(tag.name) === slug);
 }
 
 export function getAdjacentPosts(slug: string) {

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, BookOpen, PenLine } from "lucide-react";
 import { PostCard } from "@/components/post-card";
 import { getFeaturedPosts, getPublishedPosts, getTags } from "@/lib/content/posts";
+import { toTagSlug } from "@/lib/tag-slug";
 
 export default function Home() {
   const posts = getPublishedPosts();
@@ -46,7 +47,7 @@ export default function Home() {
           <Link className="text-link" href="/posts">查看全部 <ArrowRight size={15} /></Link>
         </div>
         <div className="post-list">{posts.slice(0, 5).map((post) => <PostCard key={post.slug} post={post} compact />)}</div>
-        <div className="topic-strip"><span className="muted">常写主题</span>{tags.map((tag) => <Link key={tag.name} className="tag" href={`/tags/${encodeURIComponent(tag.name)}`}>#{tag.name} <small>{tag.count}</small></Link>)}</div>
+        <div className="topic-strip"><span className="muted">常写主题</span>{tags.map((tag) => <Link key={tag.name} className="tag" href={`/tags/${toTagSlug(tag.name)}`}>#{tag.name} <small>{tag.count}</small></Link>)}</div>
       </section>
     </>
   );

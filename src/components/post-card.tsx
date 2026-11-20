@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { formatDate } from "@/lib/format";
+import { toTagSlug } from "@/lib/tag-slug";
 import type { PostSummary } from "@/types/post";
 
 export function PostCard({ post, compact = false }: { post: PostSummary; compact?: boolean }) {
@@ -21,7 +22,7 @@ export function PostCard({ post, compact = false }: { post: PostSummary; compact
       {!compact && <p className="post-card-description">{post.description}</p>}
       <div className="tag-list" aria-label="文章标签">
         {post.tags.map((tag) => (
-          <Link key={tag} className="tag" href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Link>
+          <Link key={tag} className="tag" href={`/tags/${toTagSlug(tag)}`}>#{tag}</Link>
         ))}
       </div>
     </article>

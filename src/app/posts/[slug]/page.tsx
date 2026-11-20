@@ -5,6 +5,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { MdxContent } from "@/components/mdx-content";
 import { formatDate } from "@/lib/format";
 import { getAdjacentPosts, getPostBySlug, getPublishedPosts } from "@/lib/content/posts";
+import { toTagSlug } from "@/lib/tag-slug";
 
 export const dynamicParams = false;
 
@@ -34,7 +35,7 @@ export default async function PostPage({ params }: PostPageProps) {
         <div className="post-card-meta"><time dateTime={post.date}>{formatDate(post.date)}</time><span>·</span><Link href={`/categories/${encodeURIComponent(post.category)}`}>{post.category}</Link><span>·</span><span>{post.readingMinutes} 分钟阅读</span></div>
         <h1>{post.title}</h1>
         <p>{post.description}</p>
-        <div className="tag-list">{post.tags.map((tag) => <Link key={tag} className="tag" href={`/tags/${encodeURIComponent(tag)}`}>#{tag}</Link>)}</div>
+        <div className="tag-list">{post.tags.map((tag) => <Link key={tag} className="tag" href={`/tags/${toTagSlug(tag)}`}>#{tag}</Link>)}</div>
       </header>
       <div className="prose"><MdxContent source={post.content} /></div>
       <nav className="post-navigation" aria-label="相邻文章">
