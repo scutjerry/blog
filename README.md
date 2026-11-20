@@ -67,14 +67,33 @@ NEXT_PUBLIC_SITE_URL=https://你的域名
 
 ## 部署到 EdgeOne Makers
 
-1. 进入 [EdgeOne Makers](https://pages.edgeone.ai/)，注册或登录。
+当前线上配置（腾讯云中国站）：
+
+| 项 | 值 |
+| --- | --- |
+| 项目名 | `liubai-blog-global` |
+| 加速区域 | 全球可用区（不含中国大陆） |
+| 生产分支 | `main` |
+| 安装命令 | `pnpm install` |
+| 构建命令 | `pnpm run build` |
+| 输出目录 | `out` |
+| 环境变量 | `NEXT_PUBLIC_SITE_URL=https://blog.czr0000.xyz` |
+| 自定义域名 | `blog.czr0000.xyz`（待 DNS 生效后完成归属验证） |
+
+重新部署步骤：
+
+1. 进入 [EdgeOne Makers 控制台](https://console.cloud.tencent.com/edgeone/makers)。
 2. 导入 GitHub 仓库 `scutjerry/blog`，只授权需要部署的仓库。
 3. Production Branch 选择 `main`。
-4. Install Command 使用 `pnpm install --frozen-lockfile`。
-5. Build Command 使用 `pnpm build`。
-6. Output Directory 使用 `out`。
-7. 在构建环境变量中设置 `NEXT_PUBLIC_SITE_URL`。
-8. 首次部署成功后，每次推送 `main` 都会自动重新构建。
-9. 可在域名管理中绑定自定义域名并申请免费 HTTPS 证书。
+4. 构建设置使用上表命令与输出目录。
+5. 在环境变量中设置 `NEXT_PUBLIC_SITE_URL`。
+6. 首次部署成功后，每次推送 `main` 都会自动重新构建。
+
+### 域名与 DNS 注意事项
+
+- EdgeOne 的默认域名（`*.edgeone.dev` / `*.edgeone.cool`）是**限时签名预览地址**，不能作为公开站点使用，必须绑定自定义域名。
+- 加速区域选择"含中国大陆"时，自定义域名必须完成 ICP 备案；未备案请选择"不含中国大陆"。
+- 绑定域名需先通过 TXT 记录验证归属权，再由域名解析商添加 CNAME 记录，HTTPS 证书由 EdgeOne 自动签发。
+- 修改域名的 NS（DNS 服务器）通常需要 24–48 小时生效。
 
 项目已配置 `output: "export"`、未优化图片和尾斜杠，构建结果可直接由静态托管平台提供。
