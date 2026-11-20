@@ -1,5 +1,9 @@
+// 生产构建固定使用正式域名，避免遗漏或误配构建环境变量时
+// 让 canonical、sitemap 和 robots 指向错误地址；本地开发使用 localhost。
 const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  process.env.NODE_ENV === "production"
+    ? "https://blog.czr0000.xyz"
+    : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
 
 export const siteConfig = {
   name: "留白之间",
