@@ -13,7 +13,7 @@ export function SiteHeader() {
     <header className="site-header">
       <div className="container header-inner">
         <Link href="/" className="brand" onClick={() => setOpen(false)}>
-          <span className="brand-mark" aria-hidden="true">留</span>
+          <span className="brand-mark" aria-hidden="true">J</span>
           <span>{siteConfig.name}</span>
         </Link>
 

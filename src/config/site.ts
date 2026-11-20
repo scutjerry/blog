@@ -6,8 +6,8 @@ const siteUrl =
     : (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000");
 
 export const siteConfig = {
-  name: "留白之间",
-  shortName: "留白",
+  name: "JERRY的博客",
+  shortName: "JERRY",
   description: "记录技术实践、设计思考与持续生长的个人笔记。",
   url: siteUrl,
   author: "JERRY",
