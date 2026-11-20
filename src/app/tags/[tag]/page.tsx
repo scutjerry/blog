@@ -9,7 +9,10 @@ export const dynamicParams = false;
 type TagPageProps = { params: Promise<{ tag: string }> };
 
 export function generateStaticParams() {
-  return getTags().map(({ name }) => ({ tag: toTagSlug(name) }));
+  const tags = getTags();
+  return tags.length
+    ? tags.map(({ name }) => ({ tag: toTagSlug(name) }))
+    : [{ tag: "_empty" }];
 }
 
 export async function generateMetadata({ params }: TagPageProps): Promise<Metadata> {

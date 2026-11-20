@@ -7,5 +7,5 @@ export const metadata: Metadata = { title: "文章", description: "按时间浏�
 
 export default function PostsPage() {
   const posts = getPublishedPosts();
-  return <div className="container page-shell"><PageHeading eyebrow={`${posts.length} 篇文章`} title="文章" description="按时间整理的技术实践、设计笔记与日常思考。" /><div className="post-list">{posts.map((post) => <PostCard key={post.slug} post={post} />)}</div></div>;
+  return <div className="container page-shell"><PageHeading eyebrow={`${posts.length} 篇文章`} title="文章" description="按时间整理的技术实践、设计笔记与日常思考。" />{posts.length > 0 ? (<div className="post-list">{posts.map((post) => <PostCard key={post.slug} post={post} />)}</div>) : (<div className="empty-state"><strong>还没有发布任何文章</strong><p>在 content/posts 新建一个 .mdx 文件并推送，这里就会显示出来。</p></div>)}</div>;
 }

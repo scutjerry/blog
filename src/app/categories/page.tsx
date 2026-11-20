@@ -7,5 +7,5 @@ export const metadata: Metadata = { title: "分类", description: "按主要领�
 
 export default function CategoriesPage() {
   const categories = getCategories();
-  return <div className="container page-shell"><PageHeading eyebrow="内容地图" title="分类" description="每篇文章只有一个主要归属，帮助你沿着明确的方向继续阅读。" /><div className="taxonomy-grid">{categories.map((item, index) => <Link className="taxonomy-card" key={item.name} href={`/categories/${encodeURIComponent(item.name)}`}><span>{String(index + 1).padStart(2, "0")}</span><h2>{item.name}</h2><p>{item.count} 篇文章</p></Link>)}</div></div>;
+  return <div className="container page-shell"><PageHeading eyebrow="内容地图" title="分类" description="每篇文章只有一个主要归属，帮助你沿着明确的方向继续阅读。" />{categories.length > 0 ? (<div className="taxonomy-grid">{categories.map((item, index) => <Link className="taxonomy-card" key={item.name} href={`/categories/${encodeURIComponent(item.name)}`}><span>{String(index + 1).padStart(2, "0")}</span><h2>{item.name}</h2><p>{item.count} 篇文章</p></Link>)}</div>) : (<div className="empty-state"><strong>还没有分类</strong><p>发布第一篇文章后，它的 category 会自动成为一个分类。</p></div>)}</div>;
 }

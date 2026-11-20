@@ -12,7 +12,10 @@ export const dynamicParams = false;
 type PostPageProps = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return getPublishedPosts().map((post) => ({ slug: post.slug }));
+  const posts = getPublishedPosts();
+  return posts.length
+    ? posts.map((post) => ({ slug: post.slug }))
+    : [{ slug: "_empty" }];
 }
 
 export async function generateMetadata({ params }: PostPageProps): Promise<Metadata> {

@@ -37,7 +37,11 @@ export default function Home() {
             <div><p className="eyebrow">编辑推荐</p><h2>值得从这里开始</h2></div>
             <BookOpen size={28} aria-hidden="true" />
           </div>
-          <div className="featured-grid">{featured.map((post) => <PostCard key={post.slug} post={post} />)}</div>
+          {featured.length > 0 ? (
+            <div className="featured-grid">{featured.map((post) => <PostCard key={post.slug} post={post} />)}</div>
+          ) : (
+            <div className="empty-state"><strong>还没有推荐文章</strong><p>在文章 Frontmatter 里加上 <code>featured: true</code>，它就会出现在这里。</p></div>
+          )}
         </div>
       </section>
 
@@ -46,8 +50,14 @@ export default function Home() {
           <div><p className="eyebrow">最近更新</p><h2>新写下的内容</h2></div>
           <Link className="text-link" href="/posts">查看全部 <ArrowRight size={15} /></Link>
         </div>
-        <div className="post-list">{posts.slice(0, 5).map((post) => <PostCard key={post.slug} post={post} compact />)}</div>
-        <div className="topic-strip"><span className="muted">常写主题</span>{tags.map((tag) => <Link key={tag.name} className="tag" href={`/tags/${toTagSlug(tag.name)}`}>#{tag.name} <small>{tag.count}</small></Link>)}</div>
+        {posts.length > 0 ? (
+          <div className="post-list">{posts.slice(0, 5).map((post) => <PostCard key={post.slug} post={post} compact />)}</div>
+        ) : (
+          <div className="empty-state"><strong>这里还很安静</strong><p>在 content/posts 目录新建一个 .mdx 文件，推送后它就会出现在这里。</p></div>
+        )}
+        {tags.length > 0 && (
+          <div className="topic-strip"><span className="muted">常写主题</span>{tags.map((tag) => <Link key={tag.name} className="tag" href={`/tags/${toTagSlug(tag.name)}`}>#{tag.name} <small>{tag.count}</small></Link>)}</div>
+        )}
       </section>
     </>
   );
